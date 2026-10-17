@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#14210f">
+  <title>Goblin Empire</title>
+  <link rel="icon" href="/icon.png">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div id="fx" aria-hidden="true"></div>
+
+  <header class="hud">
+    <div class="player"><span class="player-ico">👺</span><span id="player">Гоблин</span></div>
+    <div class="rate" title="Доход в час">⛏ <span id="rate">0</span>/ч</div>
+  </header>
+
+  <main>
+    <!-- ТАП -->
+    <section id="tab-tap" class="tab">
+      <div class="coins"><span class="coin">🪙</span><span id="coins">0</span></div>
+      <div class="power">+<span id="power">1</span> за тап</div>
+
+      <button id="goblin" class="goblin" type="button" aria-label="Тапнуть гоблина">
+        <svg viewBox="-12 0 244 200" aria-hidden="true">
+          <polygon class="ear" points="42,98 -8,52 56,62"/>
+          <polygon class="ear" points="178,98 228,52 164,62"/>
+          <polygon class="ear-in" points="40,92 8,62 50,68"/>
+          <polygon class="ear-in" points="180,92 212,62 170,68"/>
+          <ellipse class="head" cx="110" cy="114" rx="72" ry="68"/>
+          <polygon class="crown" points="66,62 78,24 96,50 110,16 124,50 142,24 154,62"/>
+          <circle class="gem" cx="110" cy="48" r="5"/>
+          <ellipse class="eye" cx="84" cy="106" rx="16" ry="12"/>
+          <ellipse class="eye" cx="136" cy="106" rx="16" ry="12"/>
+          <ellipse class="pupil" cx="84" cy="106" rx="3.5" ry="10"/>
+          <ellipse class="pupil" cx="136" cy="106" rx="3.5" ry="10"/>
+          <path class="brow" d="M60 88 L104 100"/>
+          <path class="brow" d="M160 88 L116 100"/>
+          <path class="nose" d="M110 112 q-9 20 0 26 q9 -6 0 -26"/>
+          <path class="mouth" d="M78 142 Q110 168 142 142"/>
+          <polygon class="fang" points="90,150 98,150 94,164"/>
+          <polygon class="fang" points="122,150 130,150 126,164"/>
+        </svg>
+      </button>
+
+      <div class="energy">
+        <div class="bar"><div id="energyFill" class="fill"></div></div>
+        <div class="energy-text">⚡ <span id="energy">0</span> / <span id="maxEnergy">0</span></div>
+      </div>
+    </section>
+
+    <!-- УЛУЧШЕНИЯ -->
+    <section id="tab-shop" class="tab" hidden>
+      <h2>Кузница</h2>
+      <div class="balance">🪙 <span id="shopCoins">0</span></div>
+      <div id="shopList" class="list"></div>
+    </section>
+
+    <!-- ДРУЗЬЯ -->
+    <section id="tab-friends" class="tab" hidden>
+      <h2>Орда друзей</h2>
+      <p class="muted">За каждого друга: <b>+<span id="bonusYou">0</span></b> тебе и <b>+<span id="bonusFriend">0</span></b> ему.</p>
+      <div class="card big"><div class="num" id="friends">0</div><div class="muted">друзей в орде</div></div>
+      <div class="row">
+        <button id="shareBtn" class="btn primary" type="button">Пригласить</button>
+        <button id="copyBtn" class="btn" type="button">Копировать ссылку</button>
+      </div>
+      <div class="card wallet">
+        <div class="wallet-title">💎 TON-кошелёк</div>
+        <div class="muted">Скоро: привязка кошелька и обмен монет. Пока копи золото!</div>
+      </div>
+    </section>
+
+    <!-- ТОП -->
+    <section id="tab-top" class="tab" hidden>
+      <h2>Зал славы</h2>
+      <div id="me" class="card me"></div>
+      <ol id="topList" class="list top"></ol>
+    </section>
+  </main>
+
+  <nav class="nav">
+    <button data-tab="tap" class="on" type="button"><span>👺</span>Игра</button>
+    <button data-tab="shop" type="button"><span>⚒️</span>Кузница</button>
+    <button data-tab="friends" type="button"><span>🛡️</span>Друзья</button>
+    <button data-tab="top" type="button"><span>🏆</span>Топ</button>
+  </nav>
+
+  <div id="toast" class="toast" hidden></div>
+  <div id="gate" class="gate" hidden>
+    <div class="gate-box">
+      <div class="gate-ico">👺</div>
+      <h2>Goblin Empire</h2>
+      <p id="gateText">Открой игру через Telegram.</p>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
