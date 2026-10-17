@@ -1,0 +1,31 @@
+databases:
+  - name: goblin-db
+    plan: free          # проверьте актуальные условия free-тарифа на render.com/pricing
+    databaseName: goblin
+    user: goblin
+
+services:
+  - type: web
+    name: goblin-empire
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: goblin-db
+          property: connectionString
+      - key: DB_SSL
+        value: "false"          # внутренний адрес Render-БД не требует SSL
+      - key: JWT_SECRET
+        generateValue: true
+      - key: BOT_TOKEN
+        sync: false             # вводится вручную в панели Render
+      - key: BOT_USERNAME
+        sync: false
+      - key: APP_SHORT_NAME
+        sync: false
